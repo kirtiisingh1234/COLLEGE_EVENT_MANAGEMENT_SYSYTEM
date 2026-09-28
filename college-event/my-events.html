@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Events - CampusEvents</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #fff0f7;
+
+            color: #4a1734;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+
+            height: 90px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow:
+                0 4px 20px
+                rgba(190, 24, 93, 0.12);
+
+        }
+
+
+        .logo {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #c21870;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 30px;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #4a1734;
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+        }
+
+
+        .nav-links a:hover {
+
+            color: #d81b72;
+
+        }
+
+
+        .logout-btn {
+
+            background: #d81b72;
+
+            color: white !important;
+
+            padding: 13px 20px;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* ================= MAIN ================= */
+
+        main {
+
+            min-height: calc(100vh - 180px);
+
+            padding: 75px 7%;
+
+        }
+
+
+        .heading {
+
+            text-align: center;
+
+            margin-bottom: 60px;
+
+        }
+
+
+        .small-title {
+
+            color: #e91e83;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .heading h1 {
+
+            font-size: 52px;
+
+            color: #4a1734;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .heading h1 span {
+
+            color: #ef3f8f;
+
+        }
+
+
+        .heading p {
+
+            font-size: 20px;
+
+            color: #76576b;
+
+        }
+
+
+        /* ================= EVENTS CONTAINER ================= */
+
+        #eventsContainer {
+
+            max-width: 1150px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 30px;
+
+        }
+
+
+        /* ================= EVENT CARD ================= */
+
+        .event-card {
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            min-height: 300px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(190, 24, 93, 0.12);
+
+            border: 1px solid #f8c9df;
+
+            transition: 0.3s;
+
+        }
+
+
+        .event-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(190, 24, 93, 0.18);
+
+        }
+
+
+        .event-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            background: #fde2f0;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 35px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .event-category {
+
+            display: inline-block;
+
+            background: #fde2f0;
+
+            color: #d81b72;
+
+            padding: 7px 14px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .event-info h2 {
+
+            font-size: 25px;
+
+            color: #4a1734;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .event-info p {
+
+            color: #76576b;
+
+            margin: 10px 0;
+
+            font-size: 15px;
+
+        }
+
+
+        /* ================= EMPTY ================= */
+
+        .empty-box {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+        }
+
+
+        .empty-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .empty-box h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .empty-box p {
+
+            color: #76576b;
+
+            font-size: 18px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .browse-btn {
+
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: #d81b72;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+
+        .browse-btn:hover {
+
+            color: #a91458;
+
+        }
+
+
+        /* ================= ERROR ================= */
+
+        .error-box {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 50px;
+
+            background: white;
+
+            border-radius: 20px;
+
+        }
+
+
+        .error-box h2 {
+
+            color: #c2185b;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .error-box p {
+
+            color: #76576b;
+
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            background: #4a1734;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px;
+
+        }
+
+
+        footer h2 {
+
+            margin-bottom: 10px;
+
+        }
+
+
+        footer p {
+
+            opacity: 0.75;
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 900px) {
+
+            #eventsContainer {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            nav {
+
+                height: auto;
+
+                padding: 20px;
+
+                flex-direction: column;
+
+                gap: 20px;
+
+            }
+
+
+            .nav-links {
+
+                gap: 15px;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+            }
+
+
+            .nav-links a {
+
+                font-size: 14px;
+
+            }
+
+
+            main {
+
+                padding: 50px 5%;
+
+            }
+
+
+            .heading h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .heading p {
+
+                font-size: 16px;
+
+            }
+
+
+            #eventsContainer {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            🎓 CampusEvents
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="events.html">
+                Events
+            </a>
+
+            <a href="my-events.html">
+                My Events
+            </a>
+
+            <a href="#" id="logoutBtn"
+               class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+
+        <div class="heading">
+
+            <div class="small-title">
+
+                MY ACTIVITIES
+
+            </div>
+
+
+            <h1>
+
+                My Events 🎟️
+
+            </h1>
+
+
+            <p>
+
+                Events you have registered for.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- FIREBASE EVENTS WILL APPEAR HERE -->
+
+        <div id="eventsContainer">
+
+            <div class="empty-box">
+
+                <div class="empty-icon">
+                    ⏳
+                </div>
+
+                <h2>
+                    Loading Events...
+                </h2>
+
+                <p>
+                    Please wait.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h2>
+            🎓 CampusEvents
+        </h2>
+
+        <p>
+            College Event Management System
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= FIREBASE ================= -->
+
+    <script type="module">
+
+        import { auth, db }
+        from "./firebase.js";
+
+
+        import {
+
+            collection,
+            query,
+            where,
+            getDocs
+
+        }
+
+        from
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+        import {
+
+            onAuthStateChanged,
+            signOut
+
+        }
+
+        from
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+
+        const eventsContainer =
+            document.getElementById(
+                "eventsContainer"
+            );
+
+
+
+        /* ================= LOAD USER EVENTS ================= */
+
+        onAuthStateChanged(
+            auth,
+            async (user) => {
+
+
+                /* USER NOT LOGGED IN */
+
+                if (!user) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+
+                try {
+
+
+                    /* FIRESTORE QUERY */
+
+                    const q = query(
+
+                        collection(
+                            db,
+                            "eventRegistrations"
+                        ),
+
+                        where(
+                            "userId",
+                            "==",
+                            user.uid
+                        )
+
+                    );
+
+
+
+                    /* GET DATA */
+
+                    const snapshot =
+                        await getDocs(q);
+
+
+
+                    /* NO EVENTS */
+
+                    if (snapshot.empty) {
+
+                        eventsContainer.innerHTML = `
+
+                            <div class="empty-box">
+
+                                <div class="empty-icon">
+                                    🎟️
+                                </div>
+
+                                <h2>
+                                    No Events Yet
+                                </h2>
+
+                                <p>
+                                    You haven't registered
+                                    for any event yet.
+                                </p>
+
+                                <a
+                                    href="events.html"
+                                    class="browse-btn"
+                                >
+                                    Browse Events →
+                                </a>
+
+                            </div>
+
+                        `;
+
+                        return;
+
+                    }
+
+
+
+                    /* CLEAR LOADING */
+
+                    eventsContainer.innerHTML = "";
+
+
+
+                    /* DISPLAY EVENTS */
+
+                    snapshot.forEach(
+                        (documentSnapshot) => {
+
+
+                            const event =
+                                documentSnapshot.data();
+
+
+
+                            const card =
+                                document.createElement(
+                                    "div"
+                                );
+
+
+                            card.className =
+                                "event-card";
+
+
+
+                            card.innerHTML = `
+
+                                <div class="event-icon">
+                                    🎟️
+                                </div>
+
+
+                                <div class="event-info">
+
+                                    <span
+                                        class="event-category"
+                                    >
+                                        ${
+                                            event.eventCategory
+                                            ||
+                                            "Event"
+                                        }
+                                    </span>
+
+
+                                    <h2>
+                                        ${
+                                            event.eventName
+                                            ||
+                                            "Event"
+                                        }
+                                    </h2>
+
+
+                                    <p>
+                                        📅
+                                        ${
+                                            event.eventDate
+                                            ||
+                                            "Date not available"
+                                        }
+                                    </p>
+
+
+                                    <p>
+                                        📍
+                                        ${
+                                            event.eventVenue
+                                            ||
+                                            "Venue not available"
+                                        }
+                                    </p>
+
+
+                                    <p>
+                                        📧
+                                        ${
+                                            event.email
+                                            ||
+                                            user.email
+                                        }
+                                    </p>
+
+                                </div>
+
+                            `;
+
+
+
+                            eventsContainer.appendChild(
+                                card
+                            );
+
+                        }
+                    );
+
+
+                }
+
+
+                catch (error) {
+
+
+                    console.error(
+                        "My Events Error:",
+                        error
+                    );
+
+
+                    eventsContainer.innerHTML = `
+
+                        <div class="error-box">
+
+                            <h2>
+                                ❌ Unable to load events
+                            </h2>
+
+                            <p>
+                                ${
+                                    error.message
+                                }
+                            </p>
+
+                        </div>
+
+                    `;
+
+                }
+
+            }
+        );
+
+
+
+        /* ================= LOGOUT ================= */
+
+        document
+            .getElementById("logoutBtn")
+            .addEventListener(
+                "click",
+                async (event) => {
+
+                    event.preventDefault();
+
+
+                    try {
+
+                        await signOut(auth);
+
+
+                        alert(
+                            "You have been logged out successfully."
+                        );
+
+
+                        window.location.href =
+                            "login.html";
+
+
+                    }
+
+                    catch (error) {
+
+                        console.error(error);
+
+
+                        alert(
+                            "Logout failed: "
+                            +
+                            error.message
+                        );
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+
+<script>
+/* Connected-app navigation helper: all pages return to the project home. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href="../index.html"]').forEach(a => a.setAttribute('href','index.html'));
+  document.querySelectorAll('a[href="admin-login.html"]').forEach(a => a.setAttribute('href','adminlogin.html'));
+});
+</script>
+
+</body>
+
+</html>

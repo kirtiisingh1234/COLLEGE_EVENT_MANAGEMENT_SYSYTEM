@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login - CampusEvents</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #fff0f7,
+                #fce7f3,
+                #fbcfe8
+            );
+        }
+
+        .login-box {
+            width: 390px;
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(190, 24, 93, 0.15);
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 20px;
+
+            background: #fce7f3;
+
+            font-size: 35px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a1734;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #76576b;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+
+            color: #4a1734;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #f9a8d4;
+            border-radius: 10px;
+
+            outline: none;
+
+            margin-bottom: 18px;
+
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #db2777;
+        }
+
+        button {
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                135deg,
+                #ec4899,
+                #db2777
+            );
+
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .back {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #be185d;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="login-box">
+
+        <div class="icon">
+            🔐
+        </div>
+
+        <h1>
+            Admin Login
+        </h1>
+
+        <p class="subtitle">
+            Login to manage college events
+        </p>
+
+
+        <label>
+            Admin Email
+        </label>
+
+        <input
+            type="email"
+            id="adminEmail"
+            placeholder="Enter admin email"
+        >
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Enter password"
+        >
+
+
+        <button id="loginBtn">
+            🔐 Login as Admin
+        </button>
+
+
+        <div
+            class="message"
+            id="message"
+        ></div>
+
+
+        <a
+            href="login.html"
+            class="back"
+        >
+            ← Back to Student Login
+        </a>
+
+    </div>
+
+
+    <script type="module">
+
+        import {
+            auth
+        } from "./firebase.js";
+
+
+        import {
+            signInWithEmailAndPassword
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+        const loginBtn =
+            document.getElementById(
+                "loginBtn"
+            );
+
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        loginBtn.addEventListener(
+            "click",
+            async function() {
+
+                const email =
+                    document
+                    .getElementById(
+                        "adminEmail"
+                    )
+                    .value
+                    .trim();
+
+
+                const password =
+                    document
+                    .getElementById(
+                        "adminPassword"
+                    )
+                    .value;
+
+
+                if (!email || !password) {
+
+                    message.textContent =
+                        "⚠️ Please enter email and password.";
+
+                    message.style.color =
+                        "#be123c";
+
+                    return;
+                }
+
+
+                try {
+
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                    message.textContent =
+                        "✅ Login successful!";
+
+
+                    message.style.color =
+                        "#15803d";
+
+
+                    setTimeout(
+                        function() {
+
+                            window.location.href =
+                                "admin.html";
+
+                        },
+                        700
+                    );
+
+                }
+
+
+                catch(error) {
+
+                    console.error(error);
+
+
+                    message.textContent =
+                        "❌ " +
+                        error.message;
+
+
+                    message.style.color =
+                        "#be123c";
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+<script>
+/* Connected-app navigation helper: all pages return to the project home. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href="../index.html"]').forEach(a => a.setAttribute('href','index.html'));
+  document.querySelectorAll('a[href="admin-login.html"]').forEach(a => a.setAttribute('href','adminlogin.html'));
+});
+</script>
+
+</body>
+
+</html>

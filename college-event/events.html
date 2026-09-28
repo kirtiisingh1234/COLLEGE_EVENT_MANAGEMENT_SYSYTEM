@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusEvents - Events</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fff0f7, #ffe4f0);
+            color: #4a1734;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 75px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 4px 20px rgba(190, 24, 93, 0.12);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #be185d;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #5f4051;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #db2777;
+        }
+
+        .login-btn {
+            background: #db2777;
+            color: white !important;
+            padding: 11px 18px;
+            border-radius: 8px;
+        }
+
+        /* HEADER */
+
+        .page-header {
+            text-align: center;
+            padding: 65px 20px 35px;
+        }
+
+        .page-header span {
+            color: #db2777;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            margin: 15px 0;
+        }
+
+        .page-header p {
+            color: #76576b;
+            font-size: 16px;
+        }
+
+        /* EVENTS */
+
+        .events-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .event-card {
+            background: white;
+            padding: 28px;
+            border-radius: 22px;
+            box-shadow: 0 12px 35px rgba(190, 24, 93, 0.10);
+            transition: 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(190, 24, 93, 0.18);
+        }
+
+        .event-icon {
+            width: 70px;
+            height: 70px;
+            background: #fce7f3;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            margin-bottom: 18px;
+        }
+
+        .category {
+            display: inline-block;
+            background: #fce7f3;
+            color: #be185d;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .event-card h2 {
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .event-description {
+            color: #76576b;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .event-info {
+            color: #76576b;
+            font-size: 13px;
+            line-height: 2;
+            margin-bottom: 18px;
+        }
+
+        .register-event-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ec4899, #db2777);
+            color: white;
+            padding: 13px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .register-event-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(219, 39, 119, 0.25);
+        }
+
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 70px 20px;
+            color: #be185d;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .no-events {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: white;
+            border-radius: 22px;
+            padding: 70px 20px;
+        }
+
+        .no-events .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .no-events h2 {
+            margin-bottom: 10px;
+        }
+
+        .no-events p {
+            color: #76576b;
+        }
+
+        /* BOTTOM */
+
+        .bottom-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .bottom-section h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .bottom-section p {
+            color: #76576b;
+            margin-bottom: 20px;
+        }
+
+        .my-events-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: white;
+            color: #be185d;
+            border: 1px solid #f9a8d4;
+            padding: 12px 22px;
+            border-radius: 9px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 30px;
+            background: #4a1734;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer p {
+            opacity: 0.75;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .events-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                height: auto;
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            🎓 CampusEvents
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="events.html">
+                Events
+            </a>
+
+            <a href="my-events.html">
+                My Events
+            </a>
+
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HEADER -->
+
+    <section class="page-header">
+
+        <span>
+            DISCOVER & PARTICIPATE
+        </span>
+
+        <h1>
+            Upcoming Events 🎉
+        </h1>
+
+        <p>
+            Explore exciting events happening in your college.
+        </p>
+
+    </section>
+
+
+    <!-- FIREBASE EVENTS -->
+
+    <div
+        class="events-container"
+        id="eventsContainer"
+    >
+
+        <div class="loading">
+            Loading events...
+        </div>
+
+    </div>
+
+
+    <!-- MY EVENTS -->
+
+    <section class="bottom-section">
+
+        <h2>
+            Already Registered? 🎟️
+        </h2>
+
+        <p>
+            Check all the events you have registered for.
+        </p>
+
+        <a
+            href="my-events.html"
+            class="my-events-btn"
+        >
+            View My Events →
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            🎓 CampusEvents
+        </h3>
+
+        <p>
+            College Event Management System
+        </p>
+
+        <p>
+            © 2026 CampusEvents
+        </p>
+
+    </footer>
+
+
+    <!-- FIREBASE SCRIPT -->
+
+    <script type="module">
+
+        import {
+            db,
+            registerForEvent
+        } from "./firebase.js";
+
+
+        import {
+            collection,
+            getDocs
+        }
+        from
+        "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+        const container =
+            document.getElementById(
+                "eventsContainer"
+            );
+
+
+        /* ============================
+           ICON FUNCTION
+        ============================ */
+
+        function getIcon(category) {
+
+            if (category === "Cultural") {
+                return "🎭";
+            }
+
+            if (category === "Technical") {
+                return "💻";
+            }
+
+            if (category === "Sports") {
+                return "🏆";
+            }
+
+            if (category === "Technology") {
+                return "🤖";
+            }
+
+            if (category === "Exhibition") {
+                return "🎨";
+            }
+
+            return "🎉";
+
+        }
+
+
+        /* ============================
+           LOAD EVENTS FROM FIREBASE
+        ============================ */
+
+        async function loadEvents() {
+
+            try {
+
+                const snapshot =
+                    await getDocs(
+                        collection(
+                            db,
+                            "events"
+                        )
+                    );
+
+
+                container.innerHTML = "";
+
+
+                /* NO EVENTS */
+
+                if (snapshot.empty) {
+
+                    container.innerHTML = `
+
+                        <div class="no-events">
+
+                            <div class="icon">
+                                📅
+                            </div>
+
+                            <h2>
+                                No Events Available
+                            </h2>
+
+                            <p>
+                                New college events will appear here.
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                /* DISPLAY EVENTS */
+
+                snapshot.forEach(
+                    (eventDoc) => {
+
+                        const event =
+                            eventDoc.data();
+
+
+                        const icon =
+                            getIcon(
+                                event.eventCategory
+                            );
+
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        card.className =
+                            "event-card";
+
+
+                        card.innerHTML = `
+
+                            <div class="event-icon">
+                                ${icon}
+                            </div>
+
+                            <span class="category">
+                                ${
+                                    event.eventCategory
+                                    || "EVENT"
+                                }
+                            </span>
+
+                            <h2>
+                                ${
+                                    event.eventName
+                                }
+                            </h2>
+
+                            <p class="event-description">
+                                ${
+                                    event.eventDescription
+                                    || "Join us for this exciting college event!"
+                                }
+                            </p>
+
+                            <div class="event-info">
+
+                                📅
+                                ${
+                                    event.eventDate
+                                    || "Date not available"
+                                }
+
+                                <br>
+
+                                🕐
+                                ${
+                                    event.eventTime
+                                    || "Time not available"
+                                }
+
+                                <br>
+
+                                📍
+                                ${
+                                    event.eventVenue
+                                    || "Venue not available"
+                                }
+
+                            </div>
+
+                            <button
+                                class="register-event-btn"
+                            >
+                                Register Now 🎟️
+                            </button>
+
+                        `;
+
+
+                        /* ============================
+                           REGISTER BUTTON
+                        ============================ */
+
+                        const button =
+                            card.querySelector(
+                                ".register-event-btn"
+                            );
+
+
+                        button.addEventListener(
+                            "click",
+                            function() {
+
+                                registerForEvent(
+
+                                    event.eventName,
+
+                                    event.eventDate,
+
+                                    event.eventVenue,
+
+                                    event.eventCategory
+
+                                );
+
+                            }
+                        );
+
+
+                        container.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(error);
+
+
+                container.innerHTML = `
+
+                    <div class="no-events">
+
+                        <div class="icon">
+                            ⚠️
+                        </div>
+
+                        <h2>
+                            Unable to Load Events
+                        </h2>
+
+                        <p>
+                            ${error.message}
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* START */
+
+        loadEvents();
+
+    </script>
+
+
+
+<script>
+/* Connected-app navigation helper: all pages return to the project home. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href="../index.html"]').forEach(a => a.setAttribute('href','index.html'));
+  document.querySelectorAll('a[href="admin-login.html"]').forEach(a => a.setAttribute('href','adminlogin.html'));
+});
+</script>
+
+</body>
+
+</html>

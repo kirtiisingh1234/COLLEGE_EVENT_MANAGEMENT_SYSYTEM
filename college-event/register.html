@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusEvents - Registration</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0f7,
+                    #ffd1e6
+                );
+
+            color: #4a1734;
+
+        }
+
+
+        /* NAVBAR */
+
+        nav {
+
+            height: 70px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow:
+                0 3px 15px
+                rgba(190, 24, 93, 0.1);
+
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: #be185d;
+
+        }
+
+
+        nav a {
+
+            text-decoration: none;
+
+            color: #6b4960;
+
+            margin-left: 25px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+        }
+
+
+        nav a:hover {
+
+            color: #db2777;
+
+        }
+
+
+        /* MAIN */
+
+        main {
+
+            min-height:
+                calc(100vh - 70px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px 20px;
+
+        }
+
+
+        /* CARD */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 950px;
+
+            background: white;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns: 40% 60%;
+
+            box-shadow:
+                0 20px 60px
+                rgba(190, 24, 93, 0.18);
+
+        }
+
+
+        /* LEFT */
+
+        .left {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ec4899,
+                    #be185d
+                );
+
+            color: white;
+
+            padding: 50px 40px;
+
+        }
+
+
+        .icon {
+
+            font-size: 45px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .left h1 {
+
+            font-size: 36px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .left p {
+
+            color: #fce7f3;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .feature {
+
+            margin: 18px 0;
+
+            font-size: 14px;
+
+        }
+
+
+        /* RIGHT */
+
+        .right {
+
+            padding: 45px;
+
+        }
+
+
+        .tag {
+
+            color: #db2777;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .right h2 {
+
+            font-size: 30px;
+
+            margin: 8px 0;
+
+        }
+
+
+        .subtitle {
+
+            color: #76576b;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* FORM */
+
+        .row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+        }
+
+
+        .field {
+
+            margin-bottom: 16px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border-radius: 9px;
+
+            border: 1px solid #fbcfe8;
+
+            background: #fffafd;
+
+            outline: none;
+
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #ec4899;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(236, 72, 153, 0.1);
+
+        }
+
+
+        /* BUTTON */
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ec4899,
+                    #db2777
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+
+        }
+
+
+        button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .login {
+
+            text-align: center;
+
+            margin-top: 18px;
+
+            font-size: 13px;
+
+            color: #76576b;
+
+        }
+
+
+        .login a {
+
+            color: #db2777;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .right {
+
+                padding: 30px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            nav {
+
+                padding: 0 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            🎓 CampusEvents
+        </div>
+
+
+        <div>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="events.html">
+                Events
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <main>
+
+        <div class="container">
+
+
+            <!-- LEFT SIDE -->
+
+            <div class="left">
+
+                <div class="icon">
+                    🎟️
+                </div>
+
+
+                <h1>
+                    Join CampusEvents
+                </h1>
+
+
+                <p>
+                    Create your student account and
+                    discover exciting college events.
+                </p>
+
+
+                <div class="feature">
+                    ✓ Discover college events
+                </div>
+
+                <div class="feature">
+                    ✓ Register for events
+                </div>
+
+                <div class="feature">
+                    ✓ Track your registrations
+                </div>
+
+                <div class="feature">
+                    ✓ Stay updated with events
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="right">
+
+
+                <div class="tag">
+                    CREATE ACCOUNT
+                </div>
+
+
+                <h2>
+                    Student Registration
+                </h2>
+
+
+                <p class="subtitle">
+                    Enter your details to create your account.
+                </p>
+
+
+
+                <!-- FORM -->
+
+                <form id="registerForm">
+
+
+                    <div class="row">
+
+
+                        <div class="field">
+
+                            <label>
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="example@gmail.com"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+                        <div class="field">
+
+                            <label>
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter phone number"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Course
+                            </label>
+
+                            <select
+                                id="course"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Course
+                                </option>
+
+                                <option>
+                                    B.Sc Computer Science
+                                </option>
+
+                                <option>
+                                    BCA
+                                </option>
+
+                                <option>
+                                    BBA
+                                </option>
+
+                                <option>
+                                    B.Com
+                                </option>
+
+                                <option>
+                                    B.A
+                                </option>
+
+                                <option>
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+                        <div class="field">
+
+                            <label>
+                                Academic Year
+                            </label>
+
+                            <select
+                                id="year"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Year
+                                </option>
+
+                                <option>
+                                    First Year
+                                </option>
+
+                                <option>
+                                    Second Year
+                                </option>
+
+                                <option>
+                                    Third Year
+                                </option>
+
+                                <option>
+                                    Fourth Year
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Interested Event
+                            </label>
+
+                            <select
+                                id="event"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Event
+                                </option>
+
+                                <option>
+                                    Annual Day
+                                </option>
+
+                                <option>
+                                    Coding Competition
+                                </option>
+
+                                <option>
+                                    Sports Day
+                                </option>
+
+                                <option>
+                                    Project Exhibition
+                                </option>
+
+                                <option>
+                                    Cultural Fest
+                                </option>
+
+                                <option>
+                                    Drama Night
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+                        <div class="field">
+
+                            <label>
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Minimum 6 characters"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Confirm Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <button type="submit">
+
+                        Create Account →
+
+                    </button>
+
+
+                </form>
+
+
+
+                <div class="login">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FIREBASE + REGISTER -->
+
+    <script type="module">
+
+        import {
+            registerStudent
+        } from "./firebase.js";
+
+
+        const form =
+            document.getElementById("registerForm");
+
+
+        form.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+                await registerStudent();
+
+            }
+        );
+
+    </script>
+
+
+
+<script>
+/* Connected-app navigation helper: all pages return to the project home. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href="../index.html"]').forEach(a => a.setAttribute('href','index.html'));
+  document.querySelectorAll('a[href="admin-login.html"]').forEach(a => a.setAttribute('href','adminlogin.html'));
+});
+</script>
+
+</body>
+
+</html>

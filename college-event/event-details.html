@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Event Details | CampusEvents</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff7fb;
+            color: #3b1730;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 76px;
+            padding: 0 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: white;
+
+            border-bottom: 1px solid #fce7f3;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 23px;
+            font-weight: bold;
+
+            color: #831843;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(
+                135deg,
+                #ec4899,
+                #be185d
+            );
+
+            border-radius: 12px;
+
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #6b4960;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #db2777;
+        }
+
+        .active {
+            color: #db2777 !important;
+        }
+
+        .register-btn {
+            padding: 11px 20px;
+
+            background: linear-gradient(
+                135deg,
+                #ec4899,
+                #db2777
+            );
+
+            color: white !important;
+
+            border-radius: 10px;
+        }
+
+
+        /* PAGE */
+
+        .page {
+            max-width: 1100px;
+
+            margin: 60px auto;
+
+            padding: 0 20px;
+        }
+
+
+        /* BACK BUTTON */
+
+        .back {
+            display: inline-block;
+
+            margin-bottom: 25px;
+
+            color: #db2777;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        /* MAIN CARD */
+
+        .event-details {
+
+            background: white;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            border: 1px solid #fce7f3;
+
+            box-shadow:
+                0 15px 40px
+                rgba(131, 24, 67, 0.10);
+        }
+
+
+        /* HERO */
+
+        .event-banner {
+
+            min-height: 300px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 100px;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    #fbcfe8,
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #fce7f3,
+                    #f9a8d4
+                );
+
+            position: relative;
+        }
+
+        .event-label {
+
+            position: absolute;
+
+            top: 25px;
+            left: 25px;
+
+            padding: 9px 14px;
+
+            background: white;
+
+            color: #be185d;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* CONTENT */
+
+        .content {
+
+            padding: 40px;
+        }
+
+        .content h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+
+            color: #3b1730;
+        }
+
+        .description {
+
+            color: #76576b;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            max-width: 750px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* INFORMATION */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 35px;
+        }
+
+        .info-box {
+
+            padding: 18px;
+
+            background: #fff7fb;
+
+            border: 1px solid #fce7f3;
+
+            border-radius: 12px;
+        }
+
+        .info-box span {
+
+            display: block;
+
+            color: #db2777;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+        }
+
+        .info-box strong {
+
+            color: #4a102e;
+
+            font-size: 15px;
+
+        }
+
+
+        /* ABOUT */
+
+        .about {
+
+            margin-bottom: 35px;
+        }
+
+        .about h2 {
+
+            font-size: 23px;
+
+            margin-bottom: 12px;
+
+        }
+
+        .about p {
+
+            color: #76576b;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+        }
+
+
+        /* BUTTON */
+
+        .register-event {
+
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            background: linear-gradient(
+                135deg,
+                #ec4899,
+                #db2777
+            );
+
+            color: white;
+
+            border-radius: 11px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 10px 25px
+                rgba(219, 39, 119, 0.25);
+
+            transition: 0.3s;
+        }
+
+        .register-event:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(219, 39, 119, 0.30);
+        }
+
+
+        /* FOOTER */
+
+        footer {
+
+            margin-top: 80px;
+
+            padding: 45px 20px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4a102e,
+                    #831843
+                );
+
+            color: white;
+        }
+
+        footer h3 {
+
+            margin-bottom: 10px;
+
+            font-size: 22px;
+        }
+
+        footer p {
+
+            color: #fbcfe8;
+
+            font-size: 13px;
+
+            margin: 5px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 650px) {
+
+            .navbar {
+
+                height: auto;
+
+                padding: 18px;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 15px;
+            }
+
+            .page {
+
+                margin-top: 30px;
+            }
+
+            .event-banner {
+
+                min-height: 220px;
+
+                font-size: 75px;
+            }
+
+            .content {
+
+                padding: 25px;
+            }
+
+            .content h1 {
+
+                font-size: 30px;
+            }
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            CampusEvents
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="events.html" class="active">
+                Events
+            </a>
+
+            <a href="my-events.html">
+                My Events
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html" class="register-btn">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <main class="page">
+
+
+        <a href="events.html" class="back">
+            ← Back to Events
+        </a>
+
+
+        <div class="event-details">
+
+
+            <!-- EVENT BANNER -->
+
+            <div class="event-banner">
+
+                <span class="event-label">
+                    CULTURAL EVENT
+                </span>
+
+                🎤
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="content">
+
+                <h1>
+                    Annual Day 2026
+                </h1>
+
+
+                <p class="description">
+
+                    Join us for the biggest celebration of
+                    our college year! Annual Day brings
+                    together students, teachers and staff
+                    for a day filled with performances,
+                    music, awards and unforgettable memories.
+
+                </p>
+
+
+                <!-- EVENT INFORMATION -->
+
+                <div class="info-grid">
+
+
+                    <div class="info-box">
+
+                        <span>
+                            📅 DATE
+                        </span>
+
+                        <strong>
+                            15 October 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>
+                            ⏰ TIME
+                        </span>
+
+                        <strong>
+                            10:00 AM - 4:00 PM
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>
+                            📍 VENUE
+                        </span>
+
+                        <strong>
+                            College Auditorium
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <span>
+                            👥 ORGANIZED BY
+                        </span>
+
+                        <strong>
+                            Cultural Committee
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- ABOUT -->
+
+                <div class="about">
+
+                    <h2>
+                        About This Event
+                    </h2>
+
+                    <p>
+
+                        Annual Day is a special occasion where
+                        students can showcase their talent and
+                        celebrate their achievements. The event
+                        includes cultural performances, music,
+                        dance, speeches, prize distribution and
+                        many exciting activities.
+
+                    </p>
+
+                </div>
+
+
+                <!-- REGISTER -->
+
+                <a
+                    href="register.html"
+                    class="register-event"
+                >
+                    Register for Event →
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            🎓 CampusEvents
+        </h3>
+
+        <p>
+            College Event Management System
+        </p>
+
+        <p>
+            Manage • Register • Participate
+        </p>
+
+    </footer>
+
+
+
+<script>
+/* Connected-app navigation helper: all pages return to the project home. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href="../index.html"]').forEach(a => a.setAttribute('href','index.html'));
+  document.querySelectorAll('a[href="admin-login.html"]').forEach(a => a.setAttribute('href','adminlogin.html'));
+});
+</script>
+
+</body>
+
+</html>

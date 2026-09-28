@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CampusEvents - Login</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff0f7,
+                    #ffd1e6
+                );
+
+            color: #4a1734;
+
+        }
+
+
+        nav {
+
+            height: 70px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow:
+                0 3px 15px
+                rgba(190, 24, 93, 0.1);
+
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: #be185d;
+
+        }
+
+
+        nav a {
+
+            text-decoration: none;
+
+            color: #6b4960;
+
+            margin-left: 25px;
+
+            font-weight: bold;
+
+        }
+
+
+        nav a:hover {
+
+            color: #db2777;
+
+        }
+
+
+        main {
+
+            min-height:
+                calc(100vh - 70px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+
+        }
+
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 450px;
+
+            background: white;
+
+            padding: 45px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(190, 24, 93, 0.18);
+
+        }
+
+
+        .icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            background: #fce7f3;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 32px;
+
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #be185d;
+
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #76576b;
+
+            font-size: 14px;
+
+            margin: 10px 0 30px;
+
+        }
+
+
+        .field {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            border: 1px solid #fbcfe8;
+
+            outline: none;
+
+            background: #fffafd;
+
+        }
+
+
+        input:focus {
+
+            border-color: #ec4899;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(236,72,153,0.1);
+
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ec4899,
+                    #db2777
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .register {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            font-size: 13px;
+
+            color: #76576b;
+
+        }
+
+
+        .register a {
+
+            color: #db2777;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <nav>
+
+        <div class="logo">
+            🎓 CampusEvents
+        </div>
+
+
+        <div>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="events.html">
+                Events
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <main>
+
+        <div class="login-card">
+
+
+            <div class="icon">
+                🔐
+            </div>
+
+
+            <h1>
+                Welcome Back!
+            </h1>
+
+
+            <p class="subtitle">
+                Login to manage your college events.
+            </p>
+
+
+
+            <form id="loginForm">
+
+
+                <div class="field">
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="field">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+
+                <button type="submit">
+                    Login →
+                </button>
+
+
+            </form>
+
+
+
+            <div class="register">
+
+                Don't have an account?
+
+                <a href="register.html">
+                    Create Account
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <script type="module">
+
+        import {
+            loginStudent
+        } from "./firebase.js";
+
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+                    loginStudent();
+
+                }
+            );
+
+    </script>
+
+
+
+<script>
+/* Connected-app navigation helper: all pages return to the project home. */
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[href="../index.html"]').forEach(a => a.setAttribute('href','index.html'));
+  document.querySelectorAll('a[href="admin-login.html"]').forEach(a => a.setAttribute('href','adminlogin.html'));
+});
+</script>
+
+</body>
+
+</html>
